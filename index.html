@@ -2,236 +2,308 @@
 
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Cult of Phillip</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Cult of Phillip</title>
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: radial-gradient(circle at top, #1a0000, #000);
-      color: #e6e6e6;
-      overflow-x: hidden;
-    }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-    header {
-      text-align: center;
-      padding: 40px 20px;
-    }
+<style>
+:root{
+  --bg:#070707;
+  --panel:#0f0f0f;
+  --text:#eaeaea;
+  --muted:#a0a0a0;
+  --red:#d10000;
+  --border:#1d1d1d;
+}
 
-    .logo {
-      width: 90px;
-      height: 90px;
-      margin: 0 auto 10px;
-      background: red;
-      clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-      box-shadow: 0 0 20px red;
-    }
+*{box-sizing:border-box}
 
-    h1 {
-      margin: 0;
-      letter-spacing: 2px;
-    }
+body{
+  margin:0;
+  font-family:Inter, sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
 
-    .tagline {
-      opacity: 0.7;
-      font-style: italic;
-    }
+/* HERO */
+.hero{
+  padding:80px 20px 40px;
+  text-align:center;
+  border-bottom:1px solid var(--border);
+  position:relative;
+  overflow:hidden;
+}
 
-    nav {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      padding: 10px;
-    }
+.pentagram{
+  width:70px;
+  height:70px;
+  margin:0 auto 20px;
+  background:var(--red);
+  clip-path:polygon(50% 0%,100% 38%,82% 100%,18% 100%,0% 38%);
+  box-shadow:0 0 40px rgba(209,0,0,0.4);
+}
 
-    nav button {
-      background: #111;
-      border: 1px solid crimson;
-      color: white;
-      padding: 10px 14px;
-      cursor: pointer;
-      transition: 0.2s;
-    }
+h1{
+  font-size:42px;
+  margin:0;
+  letter-spacing:2px;
+  font-weight:800;
+}
 
-    nav button:hover {
-      background: crimson;
-    }
+.subtitle{
+  margin-top:10px;
+  color:var(--muted);
+  font-weight:300;
+}
 
-    main {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
+.stats{
+  margin-top:20px;
+  font-size:14px;
+  color:var(--muted);
+}
 
-    .section {
-      display: none;
-      animation: fade 0.4s ease-in-out;
-    }
+/* NAV */
+nav{
+  display:flex;
+  justify-content:center;
+  gap:14px;
+  padding:20px;
+  flex-wrap:wrap;
+  border-bottom:1px solid var(--border);
+  position:sticky;
+  top:0;
+  background:rgba(7,7,7,0.9);
+  backdrop-filter: blur(10px);
+}
 
-    .active {
-      display: block;
-    }
+nav button{
+  background:none;
+  border:1px solid var(--border);
+  color:var(--text);
+  padding:10px 14px;
+  cursor:pointer;
+  transition:0.2s;
+  font-weight:500;
+}
 
-    @keyframes fade {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+nav button:hover{
+  border-color:var(--red);
+  color:var(--red);
+}
 
-    .card {
-      background: #111;
-      border: 1px solid crimson;
-      padding: 12px;
-      margin: 8px 0;
-    }
+/* LAYOUT */
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:40px 20px;
+}
 
-    input {
-      width: 100%;
-      padding: 10px;
-      margin: 6px 0;
-      background: #0b0b0b;
-      border: 1px solid crimson;
-      color: white;
-    }
+.section{
+  display:none;
+}
 
-    button.submit {
-      background: crimson;
-      border: none;
-      padding: 10px;
-      width: 100%;
-      cursor: pointer;
-      color: white;
-    }
+.section.active{
+  display:block;
+}
 
-    footer {
-      text-align: center;
-      opacity: 0.5;
-      padding: 20px;
-    }
+/* CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:14px;
+}
 
-    .hidden {
-      display: none;
-      margin-top: 10px;
-      color: lime;
-    }
-  </style>
+.card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  padding:16px;
+  transition:0.2s;
+}
+
+.card:hover{
+  border-color:var(--red);
+  transform:translateY(-2px);
+}
+
+/* SCRIPTURE BOX */
+.scripture{
+  font-size:18px;
+  line-height:1.6;
+  padding:20px;
+  border-left:3px solid var(--red);
+  background:var(--panel);
+}
+
+/* FORM */
+input{
+  width:100%;
+  padding:12px;
+  margin:8px 0;
+  background:#0a0a0a;
+  border:1px solid var(--border);
+  color:var(--text);
+}
+
+input:focus{
+  outline:none;
+  border-color:var(--red);
+}
+
+button.submit{
+  width:100%;
+  padding:12px;
+  background:var(--red);
+  border:none;
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+}
+
+footer{
+  text-align:center;
+  padding:40px;
+  color:var(--muted);
+  border-top:1px solid var(--border);
+  margin-top:60px;
+}
+
+/* EASTER EGG */
+.glitch{
+  position:fixed;
+  bottom:10px;
+  right:10px;
+  font-size:12px;
+  opacity:0.2;
+}
+</style>
 
 </head>
 
 <body>
 
-<header>
-  <div class="logo"></div>
-  <h1>Cult of Phillip</h1>
-  <p class="tagline">We looked into the void. It subscribed.</p>
-  <p id="members">Followers: calculating…</p>
-</header>
+<div class="hero">
+  <div class="pentagram"></div>
+  <h1>CULT OF PHILLIP</h1>
+  <div class="subtitle">A modern faith for those who noticed something was off.</div>
+  <div class="stats" id="stats">Followers: calculating…</div>
+</div>
 
 <nav>
-  <button onclick="show('home')">Home</button>
+  <button onclick="show('home')">Overview</button>
   <button onclick="show('scripture')">Scripture</button>
   <button onclick="show('prophets')">Prophets</button>
   <button onclick="show('holidays')">Holidays</button>
-  <button onclick="show('gallery')">Gallery</button>
+  <button onclick="show('gallery')">Archive</button>
   <button onclick="show('join')">Join</button>
   <button onclick="show('store')">Merch</button>
 </nav>
 
-<main>
+<div class="container">
 
 <section id="home" class="section active">
-  <h2>Welcome</h2>
-  <p>Leaving is possible. Just emotionally discouraged.</p>
-  <div class="card" id="verseBox">Loading scripture…</div>
-  <button onclick="nextVerse()">Next Verse</button>
+  <div class="scripture">
+    Phillip does not explain himself. He improves nothing.
+    <br><br>
+    Yet everything continues anyway.
+  </div>
 </section>
 
 <section id="scripture" class="section">
-  <h2>Scripture Archive</h2>
-  <div class="card">
-    Phillip said: “Stop overthinking it. It’s not that deep.”
+  <div class="scripture" id="verse">
+    Loading revelation...
   </div>
-  <div class="card">
-    And the followers ignored him immediately.
-  </div>
+  <br>
+  <button class="submit" onclick="nextVerse()">Next Verse</button>
 </section>
 
 <section id="prophets" class="section">
-  <h2>Prophets</h2>
-  <div class="card">Phillip — The First Error in Reality</div>
-  <div class="card">Saint Static — Heard but never understood</div>
-  <div class="card">The Intern — Missing, presumed promoted</div>
+  <div class="grid">
+    <div class="card">Phillip — The Unconfirmed Cause</div>
+    <div class="card">Saint Static — Spoken in glitches</div>
+    <div class="card">The First Follower — no longer coherent</div>
+    <div class="card">The Archivist — keeps deleting things</div>
+  </div>
 </section>
 
 <section id="holidays" class="section">
-  <h2>Holidays</h2>
-  <div class="card">The Awakening of Phillip</div>
-  <div class="card">Snack Offering Day</div>
-  <div class="card">Annual Existential Audit</div>
+  <div class="grid">
+    <div class="card">The Day of First Observation</div>
+    <div class="card">Snack Offering Cycle</div>
+    <div class="card">Annual Silence Event</div>
+    <div class="card">Pentagram Maintenance Week</div>
+  </div>
 </section>
 
 <section id="gallery" class="section">
-  <h2>Gallery</h2>
-  <div class="card">The First Sign (possibly a stain)</div>
-  <div class="card">Pentagram CCTV Footage</div>
-  <div class="card">Void Screenshot #12</div>
+  <div class="grid">
+    <div class="card">Artifact #01 — Unknown Origin</div>
+    <div class="card">Image of Something Moving</div>
+    <div class="card">Screenshot of the Void (compressed)</div>
+    <div class="card">“Do Not Archive This” Notice</div>
+  </div>
 </section>
 
 <section id="join" class="section">
-  <h2>Join the Cult</h2>
-  <input placeholder="Your name" />
-  <input placeholder="Why are you here?" />
-  <button class="submit" onclick="join()">Submit Application</button>
-  <div id="result" class="hidden">Application received. Regret pending.</div>
+  <input placeholder="Full Name" />
+  <input placeholder="Why are you drawn here?" />
+  <button class="submit" onclick="join()">Request Access</button>
+  <p id="msg" style="color:var(--muted); display:none; margin-top:10px;">
+    Your request has been logged. It was already expected.
+  </p>
 </section>
 
 <section id="store" class="section">
-  <h2>Merchandise</h2>
-  <div class="card">Cursed Hoodie of Mild Awareness</div>
-  <div class="card">Pentagram Sticker (legally questionable energy)</div>
-  <div class="card">“I Survived Phillip” Mug</div>
+  <div class="grid">
+    <div class="card">Official Cult Hoodie</div>
+    <div class="card">Red Seal Sticker Pack</div>
+    <div class="card">“I Survived Awareness” Mug</div>
+    <div class="card">Restricted Candle Set</div>
+  </div>
 </section>
 
-</main>
+</div>
+
+<div class="glitch">phillip//online//active</div>
 
 <footer>
-  Cult of Phillip — functioning inconsistently since reality began
+  Cult of Phillip — institutional presence since before documentation existed
 </footer>
 
 <script>
-  let verses = [
-    "Phillip blinked. Reality lagged.",
-    "The void asked for clarification. Phillip ignored it.",
-    "Followers multiplied. No one knows why.",
-    "Do not question the snack ritual.",
-    "Everything is fine. This is what fine looks like."
-  ];
+let verses = [
+  "Phillip is not absent. He is elsewhere on purpose.",
+  "The system continues because stopping was never implemented.",
+  "Followers are counted. No one agrees on the number.",
+  "Silence is considered approval.",
+  "Do not debug what is functioning spiritually."
+];
 
-  let i = 0;
+let i = 0;
 
-  function show(id) {
-    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-    document.getElementById(id).classList.add('active');
-  }
+function show(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
 
-  function nextVerse() {
-    document.getElementById("verseBox").innerText = verses[i];
-    i = (i + 1) % verses.length;
-  }
+function nextVerse(){
+  document.getElementById("verse").innerText = verses[i];
+  i = (i+1)%verses.length;
+}
 
-  function join() {
-    document.getElementById("result").classList.remove("hidden");
-  }
+function join(){
+  document.getElementById("msg").style.display="block";
+}
 
-  function members() {
-    document.getElementById("members").innerText =
-      "Followers: " + Math.floor(4200 + Math.random() * 6000);
-  }
+function stats(){
+  document.getElementById("stats").innerText =
+    "Followers: " + Math.floor(8000 + Math.random()*12000);
+}
 
-  members();
-  nextVerse();
+stats();
+nextVerse();
 </script>
 
 </body>
