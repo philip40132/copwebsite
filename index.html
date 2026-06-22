@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cult of Phillip</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: radial-gradient(circle at top, #1a0000, #000);
+      color: #e6e6e6;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .logo {
+      width: 90px;
+      height: 90px;
+      margin: 0 auto 10px;
+      background: red;
+      clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+      box-shadow: 0 0 20px red;
+    }
+
+    h1 {
+      margin: 0;
+      letter-spacing: 2px;
+    }
+
+    .tagline {
+      opacity: 0.7;
+      font-style: italic;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      padding: 10px;
+    }
+
+    nav button {
+      background: #111;
+      border: 1px solid crimson;
+      color: white;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    nav button:hover {
+      background: crimson;
+    }
+
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .section {
+      display: none;
+      animation: fade 0.4s ease-in-out;
+    }
+
+    .active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      background: #111;
+      border: 1px solid crimson;
+      padding: 12px;
+      margin: 8px 0;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      background: #0b0b0b;
+      border: 1px solid crimson;
+      color: white;
+    }
+
+    button.submit {
+      background: crimson;
+      border: none;
+      padding: 10px;
+      width: 100%;
+      cursor: pointer;
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      opacity: 0.5;
+      padding: 20px;
+    }
+
+    .hidden {
+      display: none;
+      margin-top: 10px;
+      color: lime;
+    }
+  </style>
+
+</head>
+
+<body>
+
+<header>
+  <div class="logo"></div>
+  <h1>Cult of Phillip</h1>
+  <p class="tagline">We looked into the void. It subscribed.</p>
+  <p id="members">Followers: calculating…</p>
+</header>
+
+<nav>
+  <button onclick="show('home')">Home</button>
+  <button onclick="show('scripture')">Scripture</button>
+  <button onclick="show('prophets')">Prophets</button>
+  <button onclick="show('holidays')">Holidays</button>
+  <button onclick="show('gallery')">Gallery</button>
+  <button onclick="show('join')">Join</button>
+  <button onclick="show('store')">Merch</button>
+</nav>
+
+<main>
+
+<section id="home" class="section active">
+  <h2>Welcome</h2>
+  <p>Leaving is possible. Just emotionally discouraged.</p>
+  <div class="card" id="verseBox">Loading scripture…</div>
+  <button onclick="nextVerse()">Next Verse</button>
+</section>
+
+<section id="scripture" class="section">
+  <h2>Scripture Archive</h2>
+  <div class="card">
+    Phillip said: “Stop overthinking it. It’s not that deep.”
+  </div>
+  <div class="card">
+    And the followers ignored him immediately.
+  </div>
+</section>
+
+<section id="prophets" class="section">
+  <h2>Prophets</h2>
+  <div class="card">Phillip — The First Error in Reality</div>
+  <div class="card">Saint Static — Heard but never understood</div>
+  <div class="card">The Intern — Missing, presumed promoted</div>
+</section>
+
+<section id="holidays" class="section">
+  <h2>Holidays</h2>
+  <div class="card">The Awakening of Phillip</div>
+  <div class="card">Snack Offering Day</div>
+  <div class="card">Annual Existential Audit</div>
+</section>
+
+<section id="gallery" class="section">
+  <h2>Gallery</h2>
+  <div class="card">The First Sign (possibly a stain)</div>
+  <div class="card">Pentagram CCTV Footage</div>
+  <div class="card">Void Screenshot #12</div>
+</section>
+
+<section id="join" class="section">
+  <h2>Join the Cult</h2>
+  <input placeholder="Your name" />
+  <input placeholder="Why are you here?" />
+  <button class="submit" onclick="join()">Submit Application</button>
+  <div id="result" class="hidden">Application received. Regret pending.</div>
+</section>
+
+<section id="store" class="section">
+  <h2>Merchandise</h2>
+  <div class="card">Cursed Hoodie of Mild Awareness</div>
+  <div class="card">Pentagram Sticker (legally questionable energy)</div>
+  <div class="card">“I Survived Phillip” Mug</div>
+</section>
+
+</main>
+
+<footer>
+  Cult of Phillip — functioning inconsistently since reality began
+</footer>
+
+<script>
+  let verses = [
+    "Phillip blinked. Reality lagged.",
+    "The void asked for clarification. Phillip ignored it.",
+    "Followers multiplied. No one knows why.",
+    "Do not question the snack ritual.",
+    "Everything is fine. This is what fine looks like."
+  ];
+
+  let i = 0;
+
+  function show(id) {
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+  }
+
+  function nextVerse() {
+    document.getElementById("verseBox").innerText = verses[i];
+    i = (i + 1) % verses.length;
+  }
+
+  function join() {
+    document.getElementById("result").classList.remove("hidden");
+  }
+
+  function members() {
+    document.getElementById("members").innerText =
+      "Followers: " + Math.floor(4200 + Math.random() * 6000);
+  }
+
+  members();
+  nextVerse();
+</script>
+
+</body>
+</html>
